@@ -19,10 +19,11 @@ namespace LD.BasicDataStructures.Stacks
     /// <summary>
     /// 栈的接口 
     /// </summary>
+    /// <typeparam name="T">type of data element</typeparam>
     /// <remarks>
     /// 主要用于定义栈的公共操作
     /// </remarks>
-    public interface IStack
+    public interface IStack<T> where T : class
     {
 
         /// <summary>
@@ -37,31 +38,28 @@ namespace LD.BasicDataStructures.Stacks
         /// <summary>
         /// Add a data element to the stack.
         /// </summary>
-        /// <typeparam name="T">type of data element</typeparam>
         /// <param name="element">value of data element</param>
         /// <returns>
         /// <c>true</c> The operation was successful.
         /// <c>false</c> The operation failed.
         /// </returns>
-        bool Push<T>(T element) where T : class;
+        bool Push(T element);
 
         /// <summary>
         /// Pop up a data element from the stack.
         /// </summary>
-        /// <typeparam name="T">type of data element</typeparam>
         /// <returns>
         /// Data element being popped.
         /// </returns>
-        T Pop<T>() where T : class;
+        T Pop();
 
         /// <summary>
         /// Get a data element from the stack.If the stack is empty, return null.
         /// </summary>
-        /// <typeparam name="T">type of data element</typeparam>
         /// <returns>
         /// Data element.If the stack is empty, return null
         /// </returns>
-        T Get<T>() where T : class;
+        T Get();
 
 
     }
