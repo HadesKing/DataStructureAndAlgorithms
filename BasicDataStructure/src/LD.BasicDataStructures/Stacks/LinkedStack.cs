@@ -23,28 +23,17 @@ using System.Threading.Tasks;
 namespace LD.BasicDataStructures.Stacks
 {
     /// <summary>
-    /// Implementation of sequential stack
+    /// Implementation of chain storage stack
     /// </summary>
     /// <typeparam name="T">Type of data</typeparam>
-    public sealed class SequentialStack<T> : IStack<SequentialNode<T>> where T : class
+    public sealed class LinkedStack<T> : IStack<SinglyLinkedNode<T>> where T : class
     {
-        private SequentialNode<T>[] m_sequentialNodes = null;
-        private Int32 m_dataElementNumber = 0;
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public SequentialStack() : this(10)
-        {
-        }
+        private SinglyLinkedNode<T> m_topNode = null;
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="capacity">Stack capacity</param>
-        public SequentialStack(Int32 capacity)
+        public LinkedStack()
         {
-            m_sequentialNodes = new SequentialNode<T>[capacity];
+
         }
 
         /// <summary>
@@ -56,7 +45,7 @@ namespace LD.BasicDataStructures.Stacks
         /// </returns>
         public bool IsEmpty()
         {
-            return m_dataElementNumber == 0;
+            return null == m_topNode;
         }
 
         /// <summary>
@@ -67,46 +56,43 @@ namespace LD.BasicDataStructures.Stacks
         /// <c>true</c> The operation was successful.
         /// <c>false</c> The operation failed.
         /// </returns>
-        public bool Push(SequentialNode<T> element)
+        public bool Push(SinglyLinkedNode<T> element)
         {
             bool result = false;
             if (null != element)
             {
-                if (m_dataElementNumber != m_sequentialNodes.Length)
+                if (null == m_topNode)
                 {
-                    m_sequentialNodes[m_dataElementNumber] = element;
-                    m_dataElementNumber++;
-                    result = true;
+                    m_topNode = element;
                 }
                 else
                 {
-                    //扩容
-                    var tmp = m_sequentialNodes;
-                    m_sequentialNodes = new SequentialNode<T>[2 * m_dataElementNumber];
-                    tmp.CopyTo(m_sequentialNodes, 0);
-                    result = Push(element);
+                    var tmpNode = m_topNode;
+                    element.Next = tmpNode;
+                    m_topNode = element;
                 }
+                result = true;
             }
 
             return result;
         }
 
         /// <summary>
-        /// Pop up a data element from the stack.
-        /// If there is no data element in the stack, it returns null.
+        /// Pop up a data element from the stack.If there is no data element in the stack, it returns null.
         /// </summary>
         /// <returns>
         /// Data element being popped.If there is no data element in the stack, it returns null.
         /// </returns>
-        public SequentialNode<T> Pop()
+        public SinglyLinkedNode<T> Pop()
         {
-            if (0 != m_dataElementNumber)
+            SinglyLinkedNode<T> returnNode = null;
+            if (null != m_topNode)
             {
-                m_dataElementNumber--;
-                return m_sequentialNodes[m_dataElementNumber];
+                returnNode = m_topNode;
+                m_topNode = returnNode.Next;
             }
 
-            return null;
+            return returnNode;
         }
 
         /// <summary>
@@ -115,14 +101,9 @@ namespace LD.BasicDataStructures.Stacks
         /// <returns>
         /// Data element.If the stack is empty, return null
         /// </returns>
-        public SequentialNode<T> Get()
+        public SinglyLinkedNode<T> Get()
         {
-            if (0 != m_dataElementNumber)
-            {
-                return m_sequentialNodes[m_dataElementNumber - 1];
-            }
-
-            return null;
+            return m_topNode;
         }
     }
 }

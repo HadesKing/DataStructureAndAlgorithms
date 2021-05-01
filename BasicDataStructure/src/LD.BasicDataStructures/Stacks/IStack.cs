@@ -46,10 +46,10 @@ namespace LD.BasicDataStructures.Stacks
         bool Push(T element);
 
         /// <summary>
-        /// Pop up a data element from the stack.
+        /// Pop up a data element from the stack.If there is no data element in the stack, it returns null.
         /// </summary>
         /// <returns>
-        /// Data element being popped.
+        /// Data element being popped.If there is no data element in the stack, it returns null.
         /// </returns>
         T Pop();
 
