@@ -30,6 +30,12 @@ namespace LD.BasicDataStructures.Stacks
     {
 
         private SinglyLinkedNode<T> m_topNode = null;
+        private Int32 m_count = 0;
+
+        /// <summary>
+        /// Gets the number of elements contained in the Stack.
+        /// </summary>
+        public Int32 Count => m_count;
 
         public LinkedStack()
         {
@@ -71,6 +77,8 @@ namespace LD.BasicDataStructures.Stacks
                     element.Next = tmpNode;
                     m_topNode = element;
                 }
+
+                m_count++;
                 result = true;
             }
 
@@ -90,6 +98,7 @@ namespace LD.BasicDataStructures.Stacks
             {
                 returnNode = m_topNode;
                 m_topNode = returnNode.Next;
+                m_count--;
             }
 
             return returnNode;
@@ -105,5 +114,6 @@ namespace LD.BasicDataStructures.Stacks
         {
             return m_topNode;
         }
+
     }
 }

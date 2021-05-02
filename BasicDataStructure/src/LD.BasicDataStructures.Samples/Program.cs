@@ -27,9 +27,19 @@ namespace LD.BasicDataStructures.Samples
             Console.WriteLine("Hello World!");
             try
             {
+                //String mathematicsExpression = "1+2*(2+3)";
+                //Int32 length = mathematicsExpression.Length;
+                //for (Int32 i = 0; i < length; i++)
+                //{
+                //    char expressionChar = mathematicsExpression[i];
+                //    bool isNumber = Char.IsNumber(expressionChar);
+                //    Console.WriteLine(isNumber);
+                //}
+
                 IList<ISample> samples = new List<ISample>();
                 samples.Add(new SequentialStackSample());
                 samples.Add(new LinkedStackSample());
+                samples.Add(new MathematicsCalculationSample());
 
                 foreach (var tmp in samples)
                 {

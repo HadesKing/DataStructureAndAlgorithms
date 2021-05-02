@@ -14,6 +14,8 @@
 // 
 //
 
+using System;
+
 namespace LD.BasicDataStructures.Stacks
 {
     /// <summary>
@@ -25,6 +27,10 @@ namespace LD.BasicDataStructures.Stacks
     /// </remarks>
     public interface IStack<T> where T : class
     {
+        /// <summary>
+        /// Gets the number of elements contained in the Stack.
+        /// </summary>
+        Int32 Count { get; }
 
         /// <summary>
         /// Verify that it is empty.
@@ -60,7 +66,6 @@ namespace LD.BasicDataStructures.Stacks
         /// Data element.If the stack is empty, return null
         /// </returns>
         T Get();
-
 
     }
 }

@@ -48,6 +48,11 @@ namespace LD.BasicDataStructures.Stacks
         }
 
         /// <summary>
+        /// Gets the number of elements contained in the Stack.
+        /// </summary>
+        public int Count => m_dataElementNumber;
+
+        /// <summary>
         /// Verify that it is empty.
         /// </summary>
         /// <returns>
@@ -124,5 +129,6 @@ namespace LD.BasicDataStructures.Stacks
 
             return null;
         }
+
     }
 }
