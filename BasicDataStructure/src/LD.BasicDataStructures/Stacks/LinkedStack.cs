@@ -26,7 +26,7 @@ namespace LD.BasicDataStructures.Stacks
     /// Implementation of chain storage stack
     /// </summary>
     /// <typeparam name="T">Type of data</typeparam>
-    public sealed class LinkedStack<T> : IStack<SinglyLinkedNode<T>> where T : class
+    public sealed class LinkedStack<T> : IStack<SinglyLinkedNode<T>>
     {
 
         private SinglyLinkedNode<T> m_topNode = null;

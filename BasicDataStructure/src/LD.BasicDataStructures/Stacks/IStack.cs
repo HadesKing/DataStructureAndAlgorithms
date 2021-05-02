@@ -25,7 +25,7 @@ namespace LD.BasicDataStructures.Stacks
     /// <remarks>
     /// 主要用于定义栈的公共操作
     /// </remarks>
-    public interface IStack<T> where T : class
+    public interface IStack<T>
     {
         /// <summary>
         /// Gets the number of elements contained in the Stack.

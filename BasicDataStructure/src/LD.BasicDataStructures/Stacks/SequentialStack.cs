@@ -26,7 +26,7 @@ namespace LD.BasicDataStructures.Stacks
     /// Implementation of sequential stack
     /// </summary>
     /// <typeparam name="T">Type of data</typeparam>
-    public sealed class SequentialStack<T> : IStack<SequentialNode<T>> where T : class
+    public sealed class SequentialStack<T> : IStack<SequentialNode<T>>
     {
         private SequentialNode<T>[] m_sequentialNodes = null;
         private Int32 m_dataElementNumber = 0;
