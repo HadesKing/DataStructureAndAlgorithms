@@ -5,21 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using LD.BasicDataStructures.Stacks;
 
-// Copyright (c) 刘迪. All rights reserved.
-//
-// Author: 刘迪
-// Create Time: 2021-05-02
-//
-// Modifier: xxx
-// Modifier time: xxx
-// Description: xxx
-//
-// Modifier: xxx
-// Modifier time: xxx
-// Description: xxx
-// 
-// 
-//
+/* =============================================================================
+ * Copyright (c) 刘迪. All rights reserved.
+ *
+ * Author: 刘迪
+ * Create Time: 2021-05-02
+ * Description: xxx
+ *
+ * ==========================================================
+ *
+ * Modifier: xxx
+ * Modifier time: xxx
+ * Description: xxx
+ *
+ * ==========================================================
+ *
+ * Modifier: xxx
+ * Modifier time: xxx
+ * Description: xxx
+ * 
+ * =============================================================================
+ */
 
 namespace LD.BasicDataStructures.Samples.Stacks
 {
@@ -30,10 +36,18 @@ namespace LD.BasicDataStructures.Samples.Stacks
     {
         private IStack<SinglyLinkedNode<String>> m_mathematicalOperationSymbolsStack = new LinkedStack<String>();
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MathematicsCalculationSample()
         {
 
         }
+
+        /// <summary>
+        /// 入栈
+        /// </summary>
+        /// <param name="expression"></param>
         private void PushToStack(String expression)
         {
             m_mathematicalOperationSymbolsStack.Push(new SinglyLinkedNode<string>() { Data = expression.ToString() });
@@ -111,7 +125,10 @@ namespace LD.BasicDataStructures.Samples.Stacks
             }
             return sbExpression.ToString();
         }
-
+        /// <summary>
+        /// 进行数字操作的元素的之间的分隔符
+        /// </summary>
+        private Char m_split = '?';
         /// <summary>
         /// 中缀表达式转换成后缀表达式
         /// </summary>
@@ -127,10 +144,16 @@ namespace LD.BasicDataStructures.Samples.Stacks
                 for (Int32 i = 0; i < length; i++)
                 {
                     char charExpression = mathematicsExpression[i];
-
-                    sbExpression.Append(Char.IsNumber(charExpression)
-                        ? charExpression.ToString()
-                        : GetExpressionFromStack(charExpression));
+                    //这里考虑到多个字符
+                    if (Char.IsNumber(charExpression))
+                    {
+                        sbExpression.Append(charExpression.ToString());
+                    }
+                    else
+                    {
+                        sbExpression.Append(m_split.ToString());
+                        sbExpression.Append(GetExpressionFromStack(charExpression));
+                    }
                 }
                 //将剩余的数学运算符出栈
                 if (!m_mathematicalOperationSymbolsStack.IsEmpty())
@@ -146,25 +169,36 @@ namespace LD.BasicDataStructures.Samples.Stacks
             return sbExpression.ToString();
         }
 
-        
         private Int32 GetValueFromPostfixExpression(String postfixExpression)
         {
             IStack<SequentialNode<Int32>>  stack = new SequentialStack<Int32>();
 
             Int32 length = postfixExpression.Length;
-            char tmpCharExpression;
+            StringBuilder sbElement = new StringBuilder();
             for (Int32 i = 0; i < length; i++)
             {
-                tmpCharExpression = postfixExpression[i];
-
+                Char tmpCharExpression = postfixExpression[i];
+                //方法一（当前实现）
+                //判断是否是操作数之间的分隔符，如果是则将之前的字符串认为是一个操作数（例如：110）
+                //方法二
+                //也可以通过栈中的元素*10，相加之和再入栈
+                if (m_split.Equals(tmpCharExpression))
+                {
+                    if (!String.IsNullOrWhiteSpace(sbElement.ToString()))
+                    {
+                        stack.Push(
+                            new SequentialNode<Int32>() { Data = Int32.Parse(sbElement.ToString()) }
+                        );
+                        sbElement = new StringBuilder();
+                    }
+                    continue;
+                }
                 //当出现运算符时，弹出栈里面的数字进行运算
                 if (Char.IsNumber(tmpCharExpression))
                 {
-                    stack.Push(
-                        new SequentialNode<Int32>(){ Data = (Int32)Char.GetNumericValue(tmpCharExpression) }
-                        );
+                    sbElement.Append(tmpCharExpression.ToString());
                 }
-                else
+                else if (stack.Count > 0)
                 {
                     SequentialNode<Int32> node1 = stack.Pop();
                     SequentialNode<Int32> node2 = stack.Pop();
@@ -181,6 +215,10 @@ namespace LD.BasicDataStructures.Samples.Stacks
                             result = node2.Data * node1.Data;
                             break;
                         case '/':
+                            if (0 == node1.Data)
+                            {
+                                throw new Exception("Zero cannot be used as a divisor.");
+                            }
                             result = node2.Data / node1.Data;
                             break;
                     }

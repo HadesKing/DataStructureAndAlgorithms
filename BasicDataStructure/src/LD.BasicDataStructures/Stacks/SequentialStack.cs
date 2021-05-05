@@ -42,7 +42,7 @@ namespace LD.BasicDataStructures.Stacks
         /// 构造函数
         /// </summary>
         /// <param name="capacity">Stack capacity</param>
-        public SequentialStack(Int32 capacity)
+        public SequentialStack(UInt32 capacity)
         {
             m_sequentialNodes = new SequentialNode<T>[capacity];
         }
@@ -50,7 +50,7 @@ namespace LD.BasicDataStructures.Stacks
         /// <summary>
         /// Gets the number of elements contained in the Stack.
         /// </summary>
-        public int Count => m_dataElementNumber;
+        public Int32 Count => m_dataElementNumber;
 
         /// <summary>
         /// Verify that it is empty.

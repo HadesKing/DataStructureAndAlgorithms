@@ -28,7 +28,7 @@ namespace LD.BasicDataStructures.Samples.Stacks
     {
         public void Sample()
         {
-            Int32 stackCapacity = 1;
+            UInt32 stackCapacity = 1;
             IStack<SequentialNode<String>> stack = new SequentialStack<String>(stackCapacity);
 
             Int32 cycleNumber = 10;
