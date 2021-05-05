@@ -19,10 +19,10 @@
 namespace LD.BasicDataStructures
 {
     /// <summary>
-    /// 线性表 节点 实体
+    /// 顺序存储 节点 实体
     /// </summary>
     /// <typeparam name="T">数据类型</typeparam>
-    public sealed class LinearTableNode<T> : BaseNode<T>
+    public sealed class SequentialNode<T> : BaseNode<T>
     {
     }
 }

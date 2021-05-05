@@ -34,7 +34,16 @@ namespace LD.BasicDataStructures
         /// 数据
         /// </summary>
         public virtual T Data { get; set; }
-
+        
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// (Inherited from Object)
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return Data?.ToString();
+        }
 
     }
 }

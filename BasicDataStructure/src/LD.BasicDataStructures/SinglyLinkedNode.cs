@@ -27,7 +27,7 @@ namespace LD.BasicDataStructures
     // 
 
     /// <summary>
-    /// 单向链表 节点 实体
+    /// 单向链表（链式存储之一） 节点 实体
     /// </summary>
     /// <typeparam name="T">数据 类型</typeparam>
     public sealed class SinglyLinkedNode<T> : BaseNode<T>

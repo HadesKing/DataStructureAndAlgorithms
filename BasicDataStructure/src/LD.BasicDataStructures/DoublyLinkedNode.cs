@@ -25,9 +25,9 @@ namespace LD.BasicDataStructures
     // Create By: 刘迪
     // Create Time: 2021-04-30
     // 
-    
+
     /// <summary>
-    /// 双向链表 节点 实体
+    /// 双向链表（链式存储之一） 节点 实体
     /// </summary>
     /// <typeparam name="T">数据 类型</typeparam>
     public sealed class DoublyLinkedNode<T> : BaseNode<T>
