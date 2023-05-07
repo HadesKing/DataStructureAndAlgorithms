@@ -92,7 +92,7 @@ namespace LD.BasicDataStructures.Stacks
                     result = Push(element);
                 }
             }
-
+            
             return result;
         }
 
